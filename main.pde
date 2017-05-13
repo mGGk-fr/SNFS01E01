@@ -20,7 +20,7 @@ commodoreFlag cf;
 copperList cl;
 
 int musicPosition;
-
+boolean overScene = true;
 //Prepare the render
 void setup(){
   minim = new Minim(this);
@@ -37,13 +37,12 @@ void setup(){
   frameRate(60);
   noCursor();
   player = minim.loadFile("erk_mankind.mp3");
-  player.play();
+  //player.play();
 }
 
 //Time to draw
 void draw(){
   musicPosition = player.position();
-  print(musicPosition+"\n");
   if (musicPosition > 0 && musicPosition < 18700){
      sceneNumber = 1; 
   }
@@ -51,16 +50,21 @@ void draw(){
      sceneNumber = 2; 
   }
   clear();
+  if(overScene == true){
+     sceneNumber= 2; 
+  }
   //By the scene number change the render
   switch(sceneNumber){
     case 1:
         zc.display();
         break;
     case 2:
-      
+        cl.display();
+        break;
   }
+  
   //cl.display();
-  zc.display();
+  //zc.display();
   sf.display();
   fgs.display();
   //Always draw the scroller text

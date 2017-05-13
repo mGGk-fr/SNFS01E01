@@ -11,6 +11,7 @@ public class copperList{
 }
 
 public class copper{
+   PGraphics renderHandler;
    int copHeight;
    int yPos;
    float redCol, blueCol, greenCol;
@@ -18,6 +19,10 @@ public class copper{
    //Nombre de couleurs différentes avant d'atteinds le blanc
    int stepNumber;
    int maxBot = 5;
+   float currentY;
+   float minY = 80;
+   float maxY = 600;
+   int speed = 5;
    
    copper(int cH, float rC, float bC, float gC, int yP){
       copHeight = cH;
@@ -29,9 +34,12 @@ public class copper{
       srRC = redCol;
       srBC = blueCol;
       srGC = greenCol;
+      renderHandler = createGraphics(1280,50);
    }
    
-   void display(){
+   void render(){
+     renderHandler.beginDraw();
+     renderHandler.clear();
      srRC = redCol;
      srBC = blueCol;
      srGC = greenCol;
@@ -45,10 +53,17 @@ public class copper{
            srRC = srRC-(((255-redCol)/(stepNumber-5)));
            srBC = srBC-(((255-blueCol)/(stepNumber-5)));
            srGC = srGC-(((255-greenCol)/(stepNumber-5)));
-         }else{
          }
-         stroke(srRC, srBC, srGC);
-         line(0, yPos+i, width,yPos+i);
+         renderHandler.stroke(srRC, srBC, srGC);
+         renderHandler.line(0, i, 1280,i);
+         
      }
+     renderHandler.endDraw();
+     
+   }
+   
+   void display(){
+     render();
+     image(renderHandler,0,250);
    }
 }
