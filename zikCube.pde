@@ -3,7 +3,7 @@ public class zikCube{
     float round = 1;
     PImage tex;
     zikCube(){
-       pg = createGraphics(1280, 720, P3D);
+       pg = createGraphics(1280, 800, P3D);
     }
     void display(){
         tex = loadImage("cube_texture.png");
@@ -11,8 +11,8 @@ public class zikCube{
         pg.clear();
         //pg.lights();
         pg.translate(width/2, height/2, 0);
-        pg.rotateX(round/2); 
-        pg.rotateY(round/2); 
+        pg.rotateX(round); 
+        pg.rotateY(round); 
         pg.noStroke();
         //pg.box(160);
         pg.scale(90);
